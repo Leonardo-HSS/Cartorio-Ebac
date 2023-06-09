@@ -1,176 +1,161 @@
-#include <stdio.h> // bliblioteca de comunicaÁ„o com o usuario
-#include <stdlib.h> //bliblioteca de alocaÁ„o de espaÁo em momoria
-#include <locale.h> //bliblioteca de alocaÁ„o de texto por regi„o
+#include <stdio.h> // bliblioteca de comunica√ß√£o com o usuario
+#include <stdlib.h> //bliblioteca de aloca√ß√£o de espa√ßo em momoria
+#include <locale.h> //bliblioteca de aloca√ß√£o de texto por regi√£o
 #include <string.h> //bliblioteca responsavel nas strings
 
 
-int registro()//funÁ„o responsavel por cadastrar o usuario no sistema
+int registro()//fun√ß√£o responsavel por cadastrar o usuario no sistema
 {
-	//inicio da criaÁ„o de variaveis/string
+    //inicio da cria√ß√£o de variaveis/string
     char arquivo[30];
-	char cpf[40];
+    char cpf[40];
     char nome[40];
     char sobrenome[80];
     char cargo[40];
-    //final da criaÁ„o de variaveis/string
+    //final da cria√ß√£o de variaveis/string
     
-    printf("Digite o CPF a ser cadastrado: ");//coletanto informaÁ„o do usuario
+    printf("Digite o CPF a ser cadastrado: ");//coletanto informa√ß√£o do usuario
     scanf("%s", cpf); //%s se refere a string
     
     strcpy(arquivo, cpf); //responsavel por copiar os valores das strings
     
     FILE *file; //cria o arquivo
     file = fopen(arquivo, "w"); // "W" significa escrever
-    fprintf(file,"CPF: ");//identaÁ„o do arquivo
-	fprintf(file,cpf); //salva o arquivo
+    fprintf(file,"CPF: ");//identa√ß√£o do arquivo
+    fprintf(file,cpf); //salva o arquivo
     fclose(file); //fecha o arquivo
     
     file = fopen(arquivo, "a"); // "a" para atualizar o arquivo
-    fprintf(file,", Nome: ");//identaÁ„o do arquivo
+    fprintf(file,", Nome: ");//identa√ß√£o do arquivo
     fclose(file);//fecha o arquivo
     
-    printf("Digite o NOME a ser cadastrado: ");//coletanto informaÁ„o do usuario
-    scanf("%s", nome);//armazena informaÁ„o do usuario
+    printf("Digite o NOME a ser cadastrado: ");//coletanto informa√ß√£o do usuario
+    scanf("%s", nome);//armazena informa√ß√£o do usuario
     
     file = fopen(arquivo, "a");//abre o arquivo
-    fprintf(file, nome);//salva a informaÁ„o do usuario
+    fprintf(file, nome);//salva a informa√ß√£o do usuario
     fclose(file);//fecha o arquivo
     
     file = fopen(arquivo, "a");//abre o arquivo
-    fprintf(file,", Sobrenome: ");//identaÁ„o do arquivo
+    fprintf(file,", Sobrenome: ");//identa√ß√£o do arquivo
     fclose(file);//fecha o arquivo
     
-    printf("Digite o SOBRENOME a ser cadastrado: ");//coletanto informaÁ„o do usuario
-    scanf("%s", sobrenome);//armazena informaÁ„o do usuario
+    printf("Digite o SOBRENOME a ser cadastrado: ");//coletanto informa√ß√£o do usuario
+    scanf("%s", sobrenome);//armazena informa√ß√£o do usuario
     
     file = fopen(arquivo, "a");//abre o arquivo
     fprintf(file, sobrenome);
     fclose(file);//fecha o arquivo
     
     file = fopen(arquivo, "a");//abre o arquivo
-    fprintf(file,", Cargo: ");//identaÁ„o do arquivo
+    fprintf(file,", Cargo: ");//identa√ß√£o do arquivo
     fclose(file);//fecha o arquivo
     
-    printf("Digite o CARGO a ser cadastrado: ");//coletanto informaÁ„o do usuario
-    scanf("%s", cargo);//armazena informaÁ„o do usuario
+    printf("Digite o CARGO a ser cadastrado: ");//coletanto informa√ß√£o do usuario
+    scanf("%s", cargo);//armazena informa√ß√£o do usuario
     
     file = fopen(arquivo, "a");//abre o arquivo
     fprintf(file, cargo);
     fclose(file);//fecha o arquivo
 }
 
-
-int consultar()//funÁ„o responsavel por consultar o usuario no sistema
+int consultar()//fun√ß√£o responsavel por consultar o usuario no sistema
 {
-	setlocale(LC_ALL, "portuguese"); // para fazer uso da localizaÁ„o em uma funÁ„o diferente e mesma deve ser posta dentro da nova funÁ„o
+    setlocale(LC_ALL, "portuguese"); // para fazer uso da localiza√ß√£o em uma fun√ß√£o diferente e mesma deve ser posta dentro da nova fun√ß√£o
 	
-	//inicio da criaÁ„o de string
+    //inicio da cria√ß√£o de string
     char cpf[40];
     char conteudo[200];
-    //final da criaÁ„o de string
+    //final da cria√ß√£o de string
     
-	printf("Digite o CPF a ser consultado: ");
-    scanf("%s",cpf);//coletando informaÁ„o do usuario
+    printf("Digite o CPF a ser consultado: ");
+    scanf("%s",cpf);//coletando informa√ß√£o do usuario
     
     FILE *file;//abrindo arquivo
     file = fopen(cpf,"r"); // "r" para ler o arquivo
     
-    if(file == NULL)//arquivo n„o localizado
+    if(file == NULL)//arquivo n√£o localizado
 	{
-	    printf("\nRegistro n„o encontrado\n\n");
+	    printf("\nRegistro n√£o encontrado\n\n");
 	}
     
     while(fgets(conteudo, 200, file) != NULL)//arquivo localizado
 	{
-	    printf("\nInformaÁıes do usuario - ");
+	    printf("\nInforma√ß√µes do usuario - ");
 	    printf("%s", conteudo);
 	    printf("\n\n");
 	    
 	}
 	fclose(file);
 	system("pause");
-    
 }
 
-
-int excluir()//funÁ„o para excluir o usuario do sistema
+int excluir()//fun√ß√£o para excluir o usuario do sistema
 {
-    setlocale(LC_ALL, "portuguese");//localizaÁ„o
+    setlocale(LC_ALL, "portuguese");//localiza√ß√£o
    
-	char cpf[40];//string
+    char cpf[40];//string
     
+    printf("Digite o CPF do usuario que deseja excluir: ");
+    scanf("%s",cpf);//coletando informa√ß√£o do usuario
     
-	printf("Digite o CPF do usuario que deseja excluir: ");
-    scanf("%s",cpf);//coletando informaÁ„o do usuario
-    
-	
-	if(remove(cpf) != 0)//usuario n„o encontrado
+	if(remove(cpf) != 0)//usuario n√£o encontrado
 	{
-	    printf("Usuario n„o cadastrado\n");
+	    printf("Usuario n√£o cadastrado\n");
 	    system("pause");
 	}else//usuario encontrado
 	{
 	    printf("Usuario: %s deletado com sucesso\n", cpf);
 	    system("pause");
 	}
-  
 }
 
-
-int main()//funÁ„o principal
+int main()//fun√ß√£o principal
 {
-    int opcao=0; //variavel de escolha 1
+        int opcao=0; //variavel de escolha 1
 	
-	int laco=1; //variavel de repetiÁ„o 1
+	int laco=1; //variavel de repeti√ß√£o 1
 	
-	for(laco=1;laco=1;) //inicio da repetiÁ„o 1
+	for(laco=1;laco=1;) //inicio da repeti√ß√£o 1
 	{
 	    system("cls");//limpar a tela
-	    
 	    setlocale(LC_ALL, "portuguese"); //Definindo linguagem
-    
 	
-	    printf("  ##### CartÛrio da Ebac #####\n\n"); //Inicio do menu
-        printf("Escolha a opÁ„o desejada do menu:\n\n");
-        printf("1 - Registrar nomes\n");
-        printf("2 - Consultar nomes\n");
-        printf("3 - Excluir nomes\n");
-		printf("4 - Sair\n");
-		printf("\nOpÁ„o: "); //final do menu
+	    printf("  ##### Cart√≥rio da Ebac #####\n\n"); //Inicio do menu
+            printf("Escolha a op√ß√£o desejada do menu:\n\n");
+            printf("1 - Registrar nomes\n");
+            printf("2 - Consultar nomes\n");
+            printf("3 - Excluir nomes\n");
+	    printf("4 - Sair\n");
+	    printf("\nOp√ß√£o: "); //final do menu
     
-        scanf("%d" , &opcao); //Armazenando a escolha do usuario
+            scanf("%d" , &opcao); //Armazenando a escolha do usuario
+            system("cls"); //responsavel por limpar a tela
     
-        system("cls"); //responsavel por limpar a tela
-    
-        
 		switch(opcao) //Sistema de escolha 1
 		{
-		    case 1:
-			registro(); //chamada de funÁıes
-	        break;
+		     case 1:
+		     registro(); //chamada de fun√ß√µes
+	             break;
 	        
-	        case 2:
-		    consultar(); //chamada de funÁıes
-	        break;
+	             case 2:
+		     consultar(); //chamada de fun√ß√µes
+	             break;
 	        
-	        case 3:
-			excluir(); //chamada de funÁıes
-	        break;
+	             case 3:
+		     excluir(); //chamada de fun√ß√µes
+	             break;
 	       
-		    case 4:
-			printf("Obrigado por utilizar o sistema\n");
-			return 0;
-			break;
+		     case 4:
+		     printf("Obrigado por utilizar o sistema\n");
+		     return 0;
+		     break;
 			 
-	        default://opÁ„o invalida
-			printf("Essa opÁ„o n„o esta disponivel\n"); 
-	        system("pause");
-		    break;
-		}
-			
-	
-   } //final da repetiÁ„o 1
-	
-	
+	             default://op√ß√£o invalida
+		     printf("Essa op√ß√£o n√£o esta disponivel\n"); 
+	             system("pause");
+		     break;
+	        }	
+   } //final da repeti√ß√£o 1		
 }
 
